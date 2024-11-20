@@ -1,8 +1,6 @@
 ﻿using MicroservicioCuenta.Api.Models;
-using MicroservicioCuenta.Api.Repositories;
+using MicroservicioCuenta.Api.Services; // Importa el servicio
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MicroservicioCuenta.Api.Controllers
@@ -11,50 +9,77 @@ namespace MicroservicioCuenta.Api.Controllers
     [ApiController]
     public class MovimientosController : ControllerBase
     {
-        private readonly IMovimientoRepository _movimientoRepository;
+        private readonly IMovimientoService _movimientoService; 
 
-        public MovimientosController(IMovimientoRepository movimientoRepository)
+        public MovimientosController(IMovimientoService movimientoService)
         {
-            _movimientoRepository = movimientoRepository;
+            _movimientoService = movimientoService;
         }
 
-        // POST
+        // post
         [HttpPost]
-        public async Task<IActionResult> CreateMovimiento([FromBody] Movimiento movimiento)
+        public async Task<IActionResult> CrearMovimiento([FromBody] MovimientoDto movimientoDto)
         {
-            if (movimiento == null)
+            if (movimientoDto == null)
             {
-                return BadRequest("Movimiento inválido.");
+                return BadRequest("Los datos del movimiento son inválidos.");
             }
+
+   
+            var cuenta = await _movimientoService.GetCuentaByIdAsync(movimientoDto.CuentaId);
+            if (cuenta == null)
+            {
+                return BadRequest("La cuenta especificada no existe.");
+            }
+
+            if (movimientoDto.TipoMovimiento == "Retiro" && cuenta.SaldoDisponible < movimientoDto.Valor)
+            {
+                return BadRequest("El saldo disponible es insuficiente para realizar este retiro.");
+            }
+
+            var movimiento = new Movimiento
+            {
+                FechaMovimiento = movimientoDto.FechaMovimiento,
+                TipoMovimiento = movimientoDto.TipoMovimiento,
+                Valor = movimientoDto.Valor,
+                Saldo = movimientoDto.TipoMovimiento == "Depósito"
+                    ? cuenta.SaldoDisponible + movimientoDto.Valor  
+                    : cuenta.SaldoDisponible - movimientoDto.Valor,
+                CuentaId = movimientoDto.CuentaId
+            };
 
             try
             {
-                var createdMovimiento = await _movimientoRepository.CreateMovimientoAsync(movimiento);
-                return CreatedAtAction(nameof(GetMovimientoById), new { id = createdMovimiento.MovimientoId }, createdMovimiento);
-            }
-            catch (InvalidOperationException ex)
-            {
-                return BadRequest(ex.Message); 
+                await _movimientoService.CrearMovimientoAsync(movimiento);
+
+                cuenta.SaldoDisponible = movimiento.Saldo;  
+
+                await _movimientoService.ActualizarCuentaAsync(cuenta);
+
+                return CreatedAtAction(nameof(GetMovimientoById), new { id = movimiento.MovimientoId }, movimiento);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Error interno del servidor: {ex.Message}");
+  
+                return StatusCode(500, "Error interno del servidor: " + ex.Message);
             }
         }
 
-        // GET
+
+
+        // get
         [HttpGet]
         public async Task<IActionResult> GetMovimientos()
         {
-            var movimientos = await _movimientoRepository.GetMovimientosAsync();
+            var movimientos = await _movimientoService.GetMovimientosAsync();
             return Ok(movimientos);
         }
 
-        //GET X ID
+        //get x id
         [HttpGet("{id}")]
         public async Task<IActionResult> GetMovimientoById(int id)
         {
-            var movimiento = await _movimientoRepository.GetMovimientoByIdAsync(id);
+            var movimiento = await _movimientoService.GetMovimientoByIdAsync(id);
 
             if (movimiento == null)
             {
@@ -64,40 +89,19 @@ namespace MicroservicioCuenta.Api.Controllers
             return Ok(movimiento);
         }
 
-        // DELETE
+        // delete
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMovimiento(int id)
         {
-            var movimiento = await _movimientoRepository.GetMovimientoByIdAsync(id);
+            var movimiento = await _movimientoService.GetMovimientoByIdAsync(id);
 
             if (movimiento == null)
             {
                 return NotFound($"No se encontró el movimiento con ID {id}.");
             }
 
-            await _movimientoRepository.DeleteMovimientoAsync(id);
-            return NoContent(); 
+            await _movimientoService.DeleteMovimientoAsync(id);
+            return NoContent();
         }
-
-  //PUT
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateMovimiento(int id, [FromBody] Movimiento movimiento)
-        {
-            try
-            {
-                await _movimientoRepository.UpdateMovimientoAsync(id, movimiento);
-                return Ok("Movimiento actualizado exitosamente.");
-            }
-            catch (InvalidOperationException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Error interno del servidor: {ex.Message}");
-            }
-        }
-
     }
 }

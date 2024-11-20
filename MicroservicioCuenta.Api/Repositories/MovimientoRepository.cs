@@ -38,13 +38,13 @@ namespace MicroservicioCuenta.Api.Repositories
         }
         public async Task<List<Movimiento>> GetMovimientosAsync()
         {
-            return await _context.Movimientos.Include(m => m.Cuenta).ToListAsync();
+            return await _context.Movimientos.Include(m => m.CuentaId).ToListAsync();
         }
 
 
         public async Task<Movimiento> GetMovimientoByIdAsync(int id)
         {
-            return await _context.Movimientos.Include(m => m.Cuenta).FirstOrDefaultAsync(m => m.MovimientoId == id);
+            return await _context.Movimientos.Include(m => m.CuentaId).FirstOrDefaultAsync(m => m.MovimientoId == id);
         }
 
 

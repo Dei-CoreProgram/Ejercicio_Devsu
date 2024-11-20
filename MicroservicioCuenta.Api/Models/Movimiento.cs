@@ -10,6 +10,6 @@ namespace MicroservicioCuenta.Api.Models
         public decimal Valor { get; set; }
         public decimal Saldo { get; set; }
         public int CuentaId { get; set; }
-        public Cuenta Cuenta { get; set; }
+       // public Cuenta Cuenta { get; set; }
     }
 }

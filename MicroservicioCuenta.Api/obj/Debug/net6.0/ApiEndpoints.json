@@ -189,15 +189,15 @@
   },
   {
     "ContainingType": "MicroservicioCuenta.Api.Controllers.MovimientosController",
-    "Method": "CreateMovimiento",
+    "Method": "CrearMovimiento",
     "RelativePath": "api/Movimientos",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "movimiento",
-        "Type": "MicroservicioCuenta.Api.Models.Movimiento",
+        "Name": "movimientoDto",
+        "Type": "MicroservicioCuenta.Api.Models.MovimientoDto",
         "IsRequired": true
       }
     ],
@@ -240,27 +240,6 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "MicroservicioCuenta.Api.Controllers.MovimientosController",
-    "Method": "UpdateMovimiento",
-    "RelativePath": "api/Movimientos/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "movimiento",
-        "Type": "MicroservicioCuenta.Api.Models.Movimiento",
         "IsRequired": true
       }
     ],
