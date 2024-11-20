@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\MicroservicioCuenta.Api.props" />
+</Project>

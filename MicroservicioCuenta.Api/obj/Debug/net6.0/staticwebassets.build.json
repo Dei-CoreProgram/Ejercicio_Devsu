@@ -1,0 +1,23 @@
+{
+  "Version": 1,
+  "Hash": "FjWpgY5eAnx3LNQPfxtamm9Ftk7gkraAauBU/tBhNZQ=",
+  "Source": "MicroservicioCuenta.Api",
+  "BasePath": "_content/MicroservicioCuenta.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "C:\\Users\\NeoSystem\\source\\repos\\Ejercicio_Devsu\\MicroservicioCliente.Api\\MicroservicioCliente.Api.csproj",
+      "Version": 2,
+      "Source": "MicroservicioCliente.Api",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

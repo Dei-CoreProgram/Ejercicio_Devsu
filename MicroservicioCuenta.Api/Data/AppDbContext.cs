@@ -9,5 +9,14 @@ namespace MicroservicioCuenta.Api.Data
 
         public DbSet<Cuenta> Cuentas { get; set; }
         public DbSet<Movimiento> Movimientos { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Movimiento>()
+                .Property(m => m.FechaMovimiento)
+                .HasColumnType("DATETIME");  
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
