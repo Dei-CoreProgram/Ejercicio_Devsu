@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroservicioCliente.Api", "MicroservicioCliente.Api\MicroservicioCliente.Api.csproj", "{50E8126B-5702-48B5-A25E-2B17DDFC78E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroservicioCuenta.Api", "MicroservicioCuenta.Api\MicroservicioCuenta.Api.csproj", "{3FCEE489-629E-4175-B67B-BA5B37530472}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{50E8126B-5702-48B5-A25E-2B17DDFC78E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50E8126B-5702-48B5-A25E-2B17DDFC78E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50E8126B-5702-48B5-A25E-2B17DDFC78E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FCEE489-629E-4175-B67B-BA5B37530472}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FCEE489-629E-4175-B67B-BA5B37530472}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FCEE489-629E-4175-B67B-BA5B37530472}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FCEE489-629E-4175-B67B-BA5B37530472}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

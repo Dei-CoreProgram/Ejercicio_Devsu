@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "U6u7NLs7eLXC3YPVmN2MkraHUnIBYQf0ejomwaNH67E=",
+  "Source": "MicroservicioCliente.Api",
+  "BasePath": "_content/MicroservicioCliente.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
