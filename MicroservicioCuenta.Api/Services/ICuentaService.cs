@@ -10,5 +10,7 @@ namespace MicroservicioCuenta.Api.Services
         Task<Cuenta> CreateCuentaAsync(Cuenta cuenta);
         Task UpdateCuentaAsync(int id, Cuenta cuenta);
         Task DeleteCuentaAsync(int id);
+
+        List<Cuenta> ObtenerCuentasPorCliente(int clienteId);
     }
 }

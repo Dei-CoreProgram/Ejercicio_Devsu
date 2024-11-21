@@ -48,4 +48,12 @@ public class MovimientoService : IMovimientoService
         _context.Cuentas.Update(cuenta);
         await _context.SaveChangesAsync();
     }
+
+    public List<Movimiento> ObtenerMovimientosPorCuentaYFecha(int cuentaId, DateTime fechaInicio, DateTime fechaFin)
+    {
+        return _context.Movimientos
+            .Where(m => m.CuentaId == cuentaId && m.FechaMovimiento >= fechaInicio && m.FechaMovimiento <= fechaFin)
+            .ToList();
+    }
+
 }

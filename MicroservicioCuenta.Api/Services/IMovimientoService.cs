@@ -8,4 +8,6 @@ public interface IMovimientoService
     Task DeleteMovimientoAsync(int id);
     Task<Cuenta> GetCuentaByIdAsync(int cuentaId);  
     Task ActualizarCuentaAsync(Cuenta cuenta);
+
+    List<Movimiento> ObtenerMovimientosPorCuentaYFecha(int cuentaId, DateTime fechaInicio, DateTime fechaFin);
 }
