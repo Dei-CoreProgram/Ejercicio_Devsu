@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MicroservicioCuenta.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2aaeb24d4143a7d5e5db7a7d47d91cbd99b92684")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e16195241b296b33ad5ad3a741e042700df1a3ce")]
 [assembly: System.Reflection.AssemblyProductAttribute("MicroservicioCuenta.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MicroservicioCuenta.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

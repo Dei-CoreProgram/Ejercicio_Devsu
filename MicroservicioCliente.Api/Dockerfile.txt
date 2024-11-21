@@ -1,0 +1,23 @@
+# Usar la imagen base oficial de .NET
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+# Usar la imagen base de build de .NET
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
+COPY ["MicroservicioCliente.Api/MicroservicioCliente.Api.csproj", "MicroservicioCliente.Api/"]
+RUN dotnet restore "MicroservicioCliente.Api/MicroservicioCliente.Api.csproj"
+COPY . .
+WORKDIR "/src/MicroservicioCliente.Api"
+RUN dotnet build "MicroservicioCliente.Api.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "MicroservicioCliente.Api.csproj" -c Release -o /app/publish
+
+# Crear la imagen final
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "MicroservicioCliente.Api.dll"]
