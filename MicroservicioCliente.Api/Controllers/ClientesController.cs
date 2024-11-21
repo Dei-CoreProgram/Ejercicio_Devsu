@@ -41,15 +41,20 @@ namespace MicroservicioCliente.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<Cliente>> PostCliente(Cliente cliente)
         {
+            if (cliente == null)
+            {
+                return BadRequest("Cliente data is required.");
+            }
+
             await _clienteRepository.AddClienteAsync(cliente);
-            return CreatedAtAction(nameof(GetCliente), new { id = cliente.ClienteId }, cliente);
+            return CreatedAtAction(nameof(GetCliente), new { id = cliente.Id }, cliente);
         }
 
         // PUT
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCliente(int id, Cliente cliente)
         {
-            if (id != cliente.ClienteId)
+            if (id != cliente.Id) 
             {
                 return BadRequest();
             }
