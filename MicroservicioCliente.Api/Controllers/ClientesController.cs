@@ -46,10 +46,7 @@ namespace MicroservicioCliente.Api.Controllers
                 return BadRequest("Cliente data is required.");
             }
 
-            // Crear el Cliente (la Persona se guarda automáticamente como parte de Cliente)
             await _clienteRepository.AddClienteAsync(cliente);
-
-            // Usamos 'Id' en vez de 'ClienteId' ya que ahora es la clave primaria heredada de Persona
             return CreatedAtAction(nameof(GetCliente), new { id = cliente.Id }, cliente);
         }
 
@@ -57,7 +54,7 @@ namespace MicroservicioCliente.Api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCliente(int id, Cliente cliente)
         {
-            if (id != cliente.Id) // Usamos 'Id' en lugar de 'ClienteId'
+            if (id != cliente.Id) 
             {
                 return BadRequest();
             }
