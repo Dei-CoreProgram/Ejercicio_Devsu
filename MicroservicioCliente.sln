@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroservicioCliente.Api", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroservicioCuenta.Api", "MicroservicioCuenta.Api\MicroservicioCuenta.Api.csproj", "{3FCEE489-629E-4175-B67B-BA5B37530472}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroservicioCliente.Api.Tests", "MicroservicioCliente.Api.Tests\MicroservicioCliente.Api.Tests.csproj", "{3339DE2A-D222-4A45-A263-F098084A7485}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{3FCEE489-629E-4175-B67B-BA5B37530472}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FCEE489-629E-4175-B67B-BA5B37530472}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FCEE489-629E-4175-B67B-BA5B37530472}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3339DE2A-D222-4A45-A263-F098084A7485}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3339DE2A-D222-4A45-A263-F098084A7485}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3339DE2A-D222-4A45-A263-F098084A7485}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3339DE2A-D222-4A45-A263-F098084A7485}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
