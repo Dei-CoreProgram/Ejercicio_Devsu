@@ -1,11 +1,9 @@
 ﻿namespace MicroservicioCliente.Api.Models
 {
-    public class Cliente
+    public class Cliente : Persona  
     {
-        public int ClienteId { get; set; }
         public string Contrasena { get; set; }
         public string Estado { get; set; }
-        public int PersonaId { get; set; }
-
+       
     }
 }

@@ -11,8 +11,8 @@ namespace MicroservicioCuenta.Api.Controllers
     [ApiController]
     public class ReportesController : ControllerBase
     {
-        private readonly ICuentaService _cuentaService;  // Dependencia para obtener las cuentas
-        private readonly IMovimientoService _movimientoService;  // Dependencia para obtener los movimientos
+        private readonly ICuentaService _cuentaService; 
+        private readonly IMovimientoService _movimientoService; 
 
         public ReportesController(ICuentaService cuentaService, IMovimientoService movimientoService)
         {
@@ -23,7 +23,6 @@ namespace MicroservicioCuenta.Api.Controllers
         [HttpGet("reportes")]
         public ActionResult<List<ReporteEstadoCuentaDto>> GenerarReporteEstadoCuenta(DateTime fechaInicio, DateTime fechaFin, int clienteId)
         {
-            // 1. Obtener todas las cuentas del cliente
             var cuentas = _cuentaService.ObtenerCuentasPorCliente(clienteId);
             if (cuentas == null || cuentas.Count == 0)
             {
@@ -34,10 +33,10 @@ namespace MicroservicioCuenta.Api.Controllers
 
             foreach (var cuenta in cuentas)
             {
-                // 2. Obtener los movimientos dentro del rango de fechas para cada cuenta
+
                 var movimientos = _movimientoService.ObtenerMovimientosPorCuentaYFecha(cuenta.CuentaId, fechaInicio, fechaFin);
 
-                // 3. Crear el DTO para el reporte con la información de la cuenta y los movimientos
+ 
                 var reporteCuenta = new ReporteEstadoCuentaDto
                 {
                     NumeroCuenta = cuenta.NumeroCuenta,
@@ -56,8 +55,6 @@ namespace MicroservicioCuenta.Api.Controllers
 
                 reporte.Add(reporteCuenta);
             }
-
-            // 4. Retornar el reporte en formato JSON
             return Ok(reporte);
         }
     }
